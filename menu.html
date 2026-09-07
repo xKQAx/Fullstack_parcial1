@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<!-- Esta es la página del menú. Aquí el visitante ve todos los platos
+     organizados por tipo (carnes, hamburguesas, picadas, acompañamientos
+     y bebidas) y puede filtrarlos para encontrar más rápido lo que quiere. -->
+<html lang="es">
+
+<!-- En esta parte van los datos que el navegador necesita: el título
+     de la pestaña, los estilos de Bootstrap, los íconos, las letras
+     de Google y nuestro archivo de estilos personalizados. -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parrilla de Julián | Menú</title>
+
+    <!-- Estos enlaces traen los estilos listos de Bootstrap, las letras
+         de Google y los íconos de Font Awesome. Así no hay que instalar nada. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Este archivo es donde la compañera va a poner los colores y
+         detalles propios del restaurante. Por ahora no tiene reglas. -->
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<!-- Aquí empieza todo lo que se ve en la pantalla: la barra de arriba,
+     el contenido principal y el pie de página. -->
+<body>
+
+    <!-- Esta es la barra de navegación de arriba. Tiene el logo del restaurante
+         y los enlaces para ir a cada página del sitio (menú, promociones,
+         nosotros, contacto). En celulares se convierte en un botón de hamburguesa. -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+
+                <!-- Este es el nombre del restaurante. Sirve como logo y también
+                     lleva de vuelta a la página de inicio si se hace clic. -->
+                <a class="navbar-brand fw-bold" href="index.html">
+                    <i class="fa-solid fa-fire"></i> Parrilla de Julián
+                </a>
+
+                <!-- Este botón solo se ve en el celular. Al tocarlo se abre o se cierra
+                     el menú de páginas para que quepa en pantallas pequeñas. -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menú">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Esta lista agrupa los enlaces a todas las páginas del sitio. -->
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="menu.html">Menú</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="promociones.html">Promociones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="nosotros.html">Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contacto.html">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Aquí va el contenido principal de la carta: título, filtros y platos. -->
+    <main>
+
+        <!-- Esta franja presenta la página del menú y explica que se puede
+             filtrar por tipo de comida. -->
+        <section class="bg-dark text-white text-center py-5">
+            <div class="container">
+                <h1 class="fw-bold">Nuestra carta</h1>
+                <p class="lead mb-0">Elige una categoría o mira todo. Los precios están en pesos colombianos.</p>
+            </div>
+        </section>
+
+        <!-- Estos botones sirven para mostrar solo un tipo de plato.
+             Si se elige "Todos", vuelven a aparecer todos los productos. -->
+        <section class="py-4">
+            <div class="container text-center">
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <button type="button" class="btn btn-dark" data-filter="todos">Todos</button>
+                    <button type="button" class="btn btn-outline-dark" data-filter="carnes">Carnes a la parrilla</button>
+                    <button type="button" class="btn btn-outline-dark" data-filter="hamburguesas">Hamburguesas y perros calientes</button>
+                    <button type="button" class="btn btn-outline-dark" data-filter="picadas">Picadas y combos</button>
+                    <button type="button" class="btn btn-outline-dark" data-filter="acompanamientos">Acompañamientos</button>
+                    <button type="button" class="btn btn-outline-dark" data-filter="bebidas">Bebidas</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Esta cuadrícula muestra cada plato en una tarjeta con foto,
+             nombre, descripción y precio. El tipo de comida está guardado
+             en data-category para que el filtro sepa qué ocultar. -->
+        <section class="pb-5">
+            <div class="container">
+                <div class="row g-4" id="listaPlatos">
+
+                    <!-- Carnes a la parrilla -->
+                    <div class="col-12 col-md-6 col-lg-4" data-category="carnes">
+                        <article class="card h-100 shadow-sm">
+                            <img src="https://placehold.co/600x400/2c1810/f5e6c8?text=Punta+de+anca" class="card-img-top" alt="Punta de anca">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Punta de anca</h2>
+                                <p class="card-text">Corte tierno al carbón, jugoso por dentro y con borde tostado. Lleva chimichurri y papa asada.</p>
+                                <p class="fw-bold mb-0">$28.900</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4" data-category="carnes">
+                        <article class="card h-100 shadow-sm">
+                            <img src="https://placehold.co/600x400/3d2415/f5e6c8?text=Costilla+BBQ" class="card-img-top" alt="Costilla BBQ">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Costilla BBQ</h2>
+                                <p class="card-text">Costilla de cerdo lenta al fuego, barnizada con salsa BBQ casera y papa criolla crocante.</p>
+                                <p class="fw-bold mb-0">$32.500</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4" data-category="carnes">
+                        <article class="card h-100 shadow-sm">
+                            <img src="https://placehold.co/600x400/1f120c/f5e6c8?text=Churrasco" class="card-img-top" alt="Churrasco argentino">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Churrasco argentino</h2>
+                                <p class="card-text">Bife ancho a punto, chimichurri fresco y ensalada de la casa. El favorito de los parrilleros.</p>
+                                <p class="fw-bold mb-0">$42.000</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4" data-category="carnes">
+                        <article class="card h-100 shadow-sm">
+                            <img src="https://placehold.co/600x400/4a2c14/f5e6c8?text=Sobrebarriga" class="card-img-top" alt="Sobrebarriga al horno">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Sobrebarriga al horno</h2>
+                                <p class="card-text">Receta de la abuela: suave, con hogao santandereano y yuca. Sabor de domingo en casa.</p>
+                                <p class="fw-bold mb-0">$29.900</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Hamburguesas y perros calientes -->
+                    <div class="col-12 col-md-6 col-lg-4" data-category="hamburguesas">
+                        <article class="card h-100 shadow-sm">
+                            <img src="https://placehold.co/600x400/3d2415/f5e6c8?text=Hamburguesa+Julian" class="card-img-top" alt="Hamburguesa Julián">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Hamburguesa Julián</h2>
+                                <p class="card-text">Carne de res 150 g, queso, tocineta, cebolla caramelizada y la salsa secreta de la casa.</p>
+                                <p class="fw-bold mb-0">$22.500</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4" data-category="hamburguesas">
+                        <article class="card h-100 shadow-sm">
+                            <img src="https://placehold.co/600x400/5a3318/f5e6c8?text=Hamburguesa+Casa" class="card-img-top" alt="Hamburguesa de la casa">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Hamburguesa de la casa</h2>
+                                <p class="card-text">Doble carne, queso cheddar, vegetales frescos y pan brioche. Para quienes llegan con hambre.</p>
+                                <p class="fw-bold mb-0">$24.900</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4" data-category="hamburguesas">
+                        <article class="card h-100 shadow-sm">
+                            <img src="https://placehold.co/600x400/6b3a1a/f5e6c8?text=Perro+Ranchero" class="card-img-top" alt="Perro caliente ranchero">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Perro caliente ranchero</h2>
+                                <p class="card-text">Salchicha a la parrilla, ripio de papa, queso, salsas y un toque de hogao. Clásico bumangués.</p>
+                                <p class="fw-bold mb-0">$16.500</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4" data-category="hamburguesas">
+                        <article class="card h-100 shadow-sm">
+                            <img src="https://placehold.co/600x400/7a421c/f5e6c8?text=Perro+Especial" class="card-img-top" alt="Perro especial">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Perro especial</h2>
+                                <p class="card-text">Salchicha premium, tocineta, queso gratinado y salsa de ajo. El extra que todos piden.</p>
+                                <p class="fw-bold mb-0">$18.900</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Picadas y combos -->
+                    <div class="col-12 col-md-6 col-lg-4" data-category="picadas">
+                        <article class="card h-100 shadow-sm">
+                            <img src="https://placehold.co/600x400/4a2c14/f5e6c8?text=Picada+para+2" class="card-img-top" alt="Picada para dos">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Picada para 2</h2>
+                                <p class="card-text">Chorizo, morcilla, carne asada, papas y arepa. Perfecta para compartir en pareja.</p>
+                                <p class="fw-bold mb-0">$45.000</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4" data-category="picadas">
+                        <article class="card h-100 shadow-sm">
+                            <img src="https://placehold.co/600x400/4a2c14/f5e6c8?text=Picada+Familiar" class="card-img-top" alt="Picada familiar">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Picada familiar</h2>
+                                <p class="card-text">Variedad de carnes, chorizo, costilla, papas, yuca y arepas. Alcanza para cuatro personas.</p>
+                                <p class="fw-bold mb-0">$78.000</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4" data-category="picadas">
+                        <article class="card h-100 shadow-sm">
+                            <img src="https://placehold.co/600x400/2c1810/f5e6c8?text=Combo+Parrillero" class="card-img-top" alt="Combo parrillero">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Combo parrillero</h2>
+                                <p class="card-text">Punta de anca, chorizo, papa criolla, arepa y gaseosa. El almuerzo completo de la casa.</p>
+                                <p class="fw-bold mb-0">$39.900</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Acompañamientos -->
+                    <div class="col-12 col-md-6 col-lg-4" data-category="acompanamientos">
+                        <article class="card h-100 shadow-sm">
+                            <img src="https://placehold.co/600x400/c4a35a/2c1810?text=Papa+criolla" class="card-img-top" alt="Papa criolla">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Papa criolla</h2>
+                                <p class="card-text">Doraditas y crocantes, con un toque de sal de la casa. El acompañante que nunca falta.</p>
+                                <p class="fw-bold mb-0">$8.500</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4" data-category="acompanamientos">
+                        <article class="card h-100 shadow-sm">
+                            <img src="https://placehold.co/600x400/e8d5a3/2c1810?text=Arepa+de+maiz" class="card-img-top" alt="Arepa de maíz">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Arepa de maíz</h2>
+                                <p class="card-text">Arepa asada en la parrilla, suave por dentro. Ideal para untar hogao o chimichurri.</p>
+                                <p class="fw-bold mb-0">$5.000</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4" data-category="acompanamientos">
+                        <article class="card h-100 shadow-sm">
+                            <img src="https://placehold.co/600x400/8fbc8f/1f120c?text=Ensalada+casa" class="card-img-top" alt="Ensalada de la casa">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Ensalada de la casa</h2>
+                                <p class="card-text">Lechuga, tomate, cebolla y vinagreta de limón. Fresca para equilibrar la parrilla.</p>
+                                <p class="fw-bold mb-0">$9.500</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4" data-category="acompanamientos">
+                        <article class="card h-100 shadow-sm">
+                            <img src="https://placehold.co/600x400/d4b483/2c1810?text=Yuca+frita" class="card-img-top" alt="Yuca frita">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Yuca frita</h2>
+                                <p class="card-text">Yuca crocante por fuera y suave por dentro. Se sirve con hogao o ají de la casa.</p>
+                                <p class="fw-bold mb-0">$7.900</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Bebidas -->
+                    <div class="col-12 col-md-6 col-lg-4" data-category="bebidas">
+                        <article class="card h-100 shadow-sm">
+                            <img src="https://placehold.co/600x400/f5e6c8/2c1810?text=Limonada+de+coco" class="card-img-top" alt="Limonada de coco">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Limonada de coco</h2>
+                                <p class="card-text">Fresca, cremosa y bien fría. La favorita para bajar el calor de la parrilla.</p>
+                                <p class="fw-bold mb-0">$8.000</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4" data-category="bebidas">
+                        <article class="card h-100 shadow-sm">
+                            <img src="https://placehold.co/600x400/9acd32/1f120c?text=Jugo+de+lulo" class="card-img-top" alt="Jugo de lulo">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Jugo de lulo</h2>
+                                <p class="card-text">Ácido y natural, hecho en el momento. El sabor que más pide la mesa santandereana.</p>
+                                <p class="fw-bold mb-0">$7.500</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4" data-category="bebidas">
+                        <article class="card h-100 shadow-sm">
+                            <img src="https://placehold.co/600x400/f4d03f/2c1810?text=Cerveza+nacional" class="card-img-top" alt="Cerveza nacional">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Cerveza nacional</h2>
+                                <p class="card-text">Bien fría, para acompañar la carne. Pregunta por las marcas del día.</p>
+                                <p class="fw-bold mb-0">$6.500</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4" data-category="bebidas">
+                        <article class="card h-100 shadow-sm">
+                            <img src="https://placehold.co/600x400/c0392b/f5e6c8?text=Gaseosa" class="card-img-top" alt="Gaseosa">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Gaseosa</h2>
+                                <p class="card-text">Personal, a elección. Un clásico para los combos y las picadas.</p>
+                                <p class="fw-bold mb-0">$4.500</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Este es el pie de página. Se repite en todo el sitio y muestra
+         la dirección, el horario, el teléfono y un mensaje de derechos
+         para que el visitante sepa cómo encontrarnos. -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h2 class="h5">Parrilla de Julián</h2>
+                    <p class="mb-0">El sabor de la parrilla santandereana, hecho en familia.</p>
+                </div>
+                <div class="col-md-4">
+                    <h2 class="h5">Encuéntranos</h2>
+                    <p class="mb-1">Cra. 27 # 32-45, Cabecera del Llano</p>
+                    <p class="mb-1">Bucaramanga, Santander</p>
+                    <p class="mb-0"><i class="fa-solid fa-phone"></i> +57 317 555 0184</p>
+                </div>
+                <div class="col-md-4">
+                    <h2 class="h5">Horario</h2>
+                    <p class="mb-0">Lunes a domingo<br>12:00 m. - 10:00 p.m.</p>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <p class="text-center mb-0">&copy; 2026 Parrilla de Julián. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Este script de Bootstrap hace que funcione el menú hamburguesa
+         y otros detalles interactivos de las páginas. -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Este script corto sirve solo para el filtro del menú.
+         Cuando se toca un botón, muestra los platos de esa categoría
+         y esconde los demás. No envía nada a un servidor. -->
+    <script>
+        const botonesFiltro = document.querySelectorAll("[data-filter]");
+        const platos = document.querySelectorAll("#listaPlatos [data-category]");
+
+        botonesFiltro.forEach(function (boton) {
+            boton.addEventListener("click", function () {
+                const categoria = boton.getAttribute("data-filter");
+
+                botonesFiltro.forEach(function (otro) {
+                    otro.classList.remove("btn-dark");
+                    otro.classList.add("btn-outline-dark");
+                });
+                boton.classList.remove("btn-outline-dark");
+                boton.classList.add("btn-dark");
+
+                platos.forEach(function (plato) {
+                    const coincide = categoria === "todos" || plato.getAttribute("data-category") === categoria;
+                    plato.classList.toggle("d-none", !coincide);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
