@@ -1,3 +1,463 @@
-/* Aquí van los estilos personalizados del restaurante.
-   Este archivo se usa para cambiar colores, tipografías y detalles
-   visuales sin tocar el HTML. Por ahora está vacío a propósito. */
+/* =========================================================
+   PARRILLA DE JULIÁN — Hoja de estilos personalizada
+   Paleta: rojo brasa + negro carbón + dorado, con más
+   presencia visual (gradientes, sombras, texturas, detalles).
+
+   Se enlaza DESPUÉS de Bootstrap (CDN) en el <head>:
+
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+   <link rel="stylesheet" href="css/estilos.css">
+   ========================================================= */
+
+/* ---- Tipografías (Google Fonts) ---- */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Work+Sans:wght@400;500;600;700&display=swap');
+
+/* ---- Paleta de colores centralizada ---- */
+:root {
+  --rojo: #c1121f;
+  --rojo-claro: #e63946;
+  --rojo-oscuro: #7a0c14;
+  --negro: #120d0d;
+  --negro-suave: #1e1616;
+  --crema: #f7ede1;
+  --dorado: #e0a63e;
+  --dorado-suave: #f3d9a4;
+
+  --grad-fuego: linear-gradient(135deg, var(--rojo-claro) 0%, var(--rojo) 55%, var(--rojo-oscuro) 100%);
+  --grad-carbon: linear-gradient(180deg, var(--negro) 0%, var(--negro-suave) 100%);
+  --sombra-suave: 0 8px 24px rgba(18, 13, 13, 0.12);
+  --sombra-fuerte: 0 18px 40px rgba(18, 13, 13, 0.35);
+  --sombra-brasa: 0 10px 30px rgba(193, 18, 31, 0.35);
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+* {
+  scrollbar-color: var(--rojo) var(--crema);
+}
+
+body {
+  background-color: var(--crema);
+  background-image:
+    radial-gradient(circle at 100% 0%, rgba(193, 18, 31, 0.06), transparent 45%),
+    radial-gradient(circle at 0% 100%, rgba(224, 166, 62, 0.08), transparent 40%);
+  font-family: 'Work Sans', sans-serif;
+  color: var(--negro);
+}
+
+h1, h2, h3, h4, h5, .card-title,
+.navbar-brand {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 64px;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--grad-fuego);
+}
+
+.text-center h2::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Filete decorativo entre secciones */
+.seccion-divisoria {
+  height: 4px;
+  border: none;
+  background: var(--grad-fuego);
+  border-radius: 4px;
+  opacity: 0.9;
+}
+
+/* Fondo alterno oscuro para secciones destacadas */
+.seccion-oscura {
+  background: var(--grad-carbon);
+  color: var(--crema);
+  position: relative;
+  overflow: hidden;
+}
+
+.seccion-oscura::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(224, 166, 62, 0.05) 0px,
+    rgba(224, 166, 62, 0.05) 2px,
+    transparent 2px,
+    transparent 14px
+  );
+  pointer-events: none;
+}
+
+.seccion-oscura h2,
+.seccion-oscura h3 {
+  color: var(--dorado-suave);
+}
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+.navbar {
+  background: var(--grad-carbon) !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+}
+
+.navbar-brand {
+  color: var(--crema) !important;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navbar-brand i {
+  color: var(--rojo-claro);
+  filter: drop-shadow(0 0 6px rgba(193, 18, 31, 0.6));
+}
+
+.nav-link {
+  color: var(--crema) !important;
+  font-weight: 600;
+  position: relative;
+  margin: 0 0.4rem;
+  transition: color 0.25s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: -2px;
+  height: 2px;
+  background: var(--grad-fuego);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--dorado-suave) !important;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+.navbar-toggler {
+  border-color: var(--rojo) !important;
+}
+
+.navbar-toggler-icon {
+  filter: invert(1);
+}
+
+/* =========================================================
+   BANNER PRINCIPAL
+   ========================================================= */
+.banner {
+  background: var(--grad-carbon);
+  color: var(--crema);
+  position: relative;
+  overflow: hidden;
+  padding-block: 5rem;
+}
+
+.banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(224, 166, 62, 0.06) 0px,
+    rgba(224, 166, 62, 0.06) 2px,
+    transparent 2px,
+    transparent 14px
+  );
+  pointer-events: none;
+}
+
+.banner::after {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  top: -220px;
+  right: -160px;
+  background: radial-gradient(circle, rgba(193, 18, 31, 0.45), transparent 70%);
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.banner > * {
+  position: relative;
+  z-index: 1;
+}
+
+.banner h1,
+.banner .titulo-destacado {
+  background: linear-gradient(90deg, var(--dorado-suave), var(--rojo-claro));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  text-shadow: none;
+}
+
+.banner p,
+.banner .texto-banner {
+  color: var(--crema);
+  opacity: 0.9;
+}
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+.btn {
+  border-radius: 50px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  padding: 0.65rem 1.6rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn-primary,
+.btn-danger {
+  background: var(--grad-fuego);
+  border: none;
+  color: #fff;
+  box-shadow: var(--sombra-brasa);
+}
+
+.btn-primary:hover,
+.btn-danger:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 34px rgba(193, 18, 31, 0.45);
+  filter: brightness(1.05);
+}
+
+.btn-outline-dark {
+  color: var(--negro);
+  border: 2px solid var(--rojo);
+  background: transparent;
+}
+
+.btn-outline-dark:hover {
+  background: var(--grad-fuego);
+  border-color: var(--rojo);
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: var(--sombra-brasa);
+}
+
+.banner .btn-outline-dark {
+  color: var(--crema);
+  border-color: var(--dorado);
+}
+
+.banner .btn-outline-dark:hover {
+  background: var(--dorado);
+  color: var(--negro);
+  box-shadow: 0 10px 30px rgba(224, 166, 62, 0.4);
+}
+
+/* =========================================================
+   CARDS DE PRODUCTOS / DESTACADOS / PROMOCIONES
+   ========================================================= */
+.card {
+  border: none;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.card-producto {
+  background-color: #ffffff;
+  box-shadow: var(--sombra-suave);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-top: 4px solid transparent;
+}
+
+.card-producto:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--sombra-fuerte);
+  border-top: 4px solid var(--rojo);
+}
+
+.icono-plato {
+  font-size: 2.2rem;
+  text-align: center;
+  padding: 1.4rem 0 0.6rem;
+  color: #fff;
+  background: var(--grad-fuego);
+  margin: -1px -1px 0;
+}
+
+.card-producto .card-body {
+  padding: 1.4rem;
+}
+
+.card-producto .card-title {
+  font-size: 1.15rem;
+  margin-bottom: 0.4rem;
+}
+
+.card-producto .precio {
+  display: inline-block;
+  margin-top: 0.6rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--negro);
+  background: linear-gradient(90deg, var(--dorado-suave), var(--dorado));
+}
+
+/* Recorte uniforme 4:3: mismas fotos de plato (cards) y foto del local.
+   object-fit recorta sin deformar; el grid de Bootstrap sigue apilando las cards. */
+.card-img-top,
+.img-historia {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* =========================================================
+   PROMOCIONES: alert + badges
+   ========================================================= */
+.alert-warning {
+  background: linear-gradient(90deg, var(--dorado-suave), var(--dorado));
+  border: none;
+  border-radius: 14px;
+  color: var(--negro);
+  font-weight: 700;
+  box-shadow: var(--sombra-suave);
+}
+
+.badge {
+  background: var(--grad-fuego) !important;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 0.5em 0.9em;
+  box-shadow: 0 4px 12px rgba(193, 18, 31, 0.35);
+}
+
+/* =========================================================
+   FORMULARIO DE CONTACTO
+   ========================================================= */
+.form-control,
+.form-select {
+  border-radius: 12px;
+  border: 1px solid #e2d5c6;
+  padding: 0.7rem 1rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--rojo);
+  box-shadow: 0 0 0 0.2rem rgba(193, 18, 31, 0.2);
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--negro);
+}
+
+/* =========================================================
+   ICONOS DE REDES SOCIALES
+   ========================================================= */
+.redes-sociales a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  color: #fff;
+  background: var(--grad-fuego);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.redes-sociales a:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: var(--sombra-brasa);
+}
+
+/* =========================================================
+   PIE DE PÁGINA
+   ========================================================= */
+footer {
+  background: var(--grad-carbon);
+  color: var(--crema);
+  position: relative;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--grad-fuego);
+}
+
+footer a {
+  color: var(--dorado-suave);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+footer a:hover {
+  color: #fff;
+}
+
+footer small,
+footer p {
+  opacity: 0.75;
+}
+
+/* =========================================================
+   RESPONSIVE (ajustes finos sobre el grid de Bootstrap)
+   ========================================================= */
+
+@media (max-width: 575.98px) {
+  .banner {
+    padding-block: 3.5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .card-producto:hover {
+    transform: translateY(-10px) scale(1.015);
+  }
+}

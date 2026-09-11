@@ -21,7 +21,7 @@ promociones.html    Ofertas y combos
 nosotros.html       Historia, misión, visión y valores
 contacto.html       Datos del local y formulario
 css/estilos.css     Estilos personalizados (aquí trabaja la compañera)
-img/                Carpeta para fotos propias (ahora vacía)
+img/                Fotos locales de platos y del local (ver img/CREDITOS.txt)
 README.txt          Este archivo
 
 Estilos personalizados
@@ -36,6 +36,7 @@ Librerías por CDN
 - Google Fonts (Playfair Display y Nunito)
 - Font Awesome (íconos)
 
-Las imágenes del menú son placeholders de placehold.co, sin fotos con
-derechos de autor. Si más adelante se usan fotos propias, se pueden
-guardar en la carpeta img/.
+Las fotos de los platos están en img/ y son genéricas de uso libre
+(Unsplash, Pexels y Wikimedia Commons). El detalle de cada archivo
+está en img/CREDITOS.txt. No se usaron fotos de Google Images ni de
+redes sociales.
